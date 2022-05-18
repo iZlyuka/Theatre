@@ -1,0 +1,39 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31729.503
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Theatre", "Theatre.vcxproj", "{B3465129-9E96-4F42-85D7-D4F075C51F5F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{6D390CB7-31CC-4D27-BF3F-4646CBB55CE8}"
+	ProjectSection(SolutionItems) = preProject
+		Basket.txt = Basket.txt
+		LittleC.txt = LittleC.txt
+		Perfomances.txt = Perfomances.txt
+		Reserve.txt = Reserve.txt
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B3465129-9E96-4F42-85D7-D4F075C51F5F}.Debug|x64.ActiveCfg = Debug|x64
+		{B3465129-9E96-4F42-85D7-D4F075C51F5F}.Debug|x64.Build.0 = Debug|x64
+		{B3465129-9E96-4F42-85D7-D4F075C51F5F}.Debug|x86.ActiveCfg = Debug|Win32
+		{B3465129-9E96-4F42-85D7-D4F075C51F5F}.Debug|x86.Build.0 = Debug|Win32
+		{B3465129-9E96-4F42-85D7-D4F075C51F5F}.Release|x64.ActiveCfg = Release|x64
+		{B3465129-9E96-4F42-85D7-D4F075C51F5F}.Release|x64.Build.0 = Release|x64
+		{B3465129-9E96-4F42-85D7-D4F075C51F5F}.Release|x86.ActiveCfg = Release|Win32
+		{B3465129-9E96-4F42-85D7-D4F075C51F5F}.Release|x86.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {57BB0833-7778-4A1C-AEA0-B17695E22CFD}
+	EndGlobalSection
+EndGlobal
