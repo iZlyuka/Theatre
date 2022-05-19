@@ -7,8 +7,6 @@
 
 using namespace std;
 
-void Menu();
-
 class Tickets {
 private:
 	string name;
@@ -66,38 +64,17 @@ public:
 	string get_seats() {
 		return seats;
 	}
-	void buy();
-	void ToReserve();
-	void Perfomances();
-	void Basket();
-	void Reserve();
-	void head();
-	void headBasket();
+	void buyTickets();
+	void reserveTickets();
 };
 
-class Seats {
-private:
-	string amount;
-	string cost;
-public:
-	void set_cost() {
-		string COST;
-		getline(cin, COST);
-		cost = COST;
-	}
-	void set_amount() {
-		string AMOUNT;
-		getline(cin, AMOUNT);
-		amount = AMOUNT;
-	}
-	string get_amount() {
-		return amount;
-	}
-	string get_cost() {
-		return cost;
-	}
-};
-
+void Perfomances();
+void Basket();
+void Reserve();
+void Menu();
+void head();
+void back();
+void headBasket();
 
 #endif // HEADER_H
 
