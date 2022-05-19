@@ -4,7 +4,7 @@
 #include <fstream>
 
 void Menu() {
-	Tickets buy;
+	Tickets tickets;
 	for (;;)
 	{
 		cout << "Что хотите сделать? \n";
@@ -20,12 +20,12 @@ void Menu() {
 		{
 		case 1:
 			system("cls");
-			head();
-			Perfomances();
+			//tickets.head();
+			tickets.Perfomances();
 			cout << "Что хотите сделать? \n";
 			cout << "1. Купить билеты \n";
 			cout << "2. Забронировать билеты \n";
-			cout << "3. Назад \n";
+			cout << "3. В главное меню \n";
 			cout << "4. Выход \n";
 			cout << "Выберите действие -> \n";
 			int y;
@@ -34,8 +34,8 @@ void Menu() {
 			{
 			case 1:
 				system("cls");
-				Perfomances();
-				buy.buyTickets();
+				tickets.Perfomances();
+				tickets.buy();
 				cout << "1. В главное меню \n";
 				cout << "2. Посмотреть купленные билеты \n";
 				cout << "3. Выход \n";
@@ -45,11 +45,11 @@ void Menu() {
 				{
 				case 1:
 					system("cls");
-					back();
+					Menu();
 					break;
 				case 2:
 					system("cls");
-					Basket();
+					tickets.Basket();
 					cout << "1. В главное меню \n";
 					cout << "2. Выход \n";
 					cout << "Выберите действие -> \n";
@@ -59,7 +59,7 @@ void Menu() {
 					{
 					case 1:
 						system("cls");
-						back();
+						Menu();
 						break;
 					case 2:
 						system("cls");
@@ -76,8 +76,8 @@ void Menu() {
 				break;
 			case 2:
 				system("cls");
-				Perfomances();
-				buy.reserveTickets();
+				tickets.Perfomances();
+				tickets.ToReserve();
 				cout << "1. В главное меню \n";
 				cout << "2. Посмотреть купленные билеты \n";
 				cout << "3. Выход \n";
@@ -87,12 +87,12 @@ void Menu() {
 				{
 				case 1:
 					system("cls");
-					back();
+					Menu();
 					break;
 				case 2:
 					system("cls");
-					Basket();
-					cout << "1. Назад \n";
+					tickets.Basket();
+					cout << "1. В главное меню \n";
 					cout << "2. Выход \n";
 					cout << "Выберите действие -> \n";
 					int d;
@@ -101,7 +101,7 @@ void Menu() {
 					{
 					case 1:
 						system("cls");
-						back();
+						Menu();
 						break;
 					case 2:
 						system("cls");
@@ -118,7 +118,7 @@ void Menu() {
 				break;
 			case 3:
 				system("cls");
-				back();
+				Menu();
 				break;
 			case 4:
 				system("cls");
@@ -129,8 +129,8 @@ void Menu() {
 			break;
 		case 3:
 			system("cls");
-			Basket();
-			cout << "1. Назад \n";
+			tickets.Basket();
+			cout << "1. В главное меню \n";
 			cout << "2. Выход \n";
 			cout << "Выберите действие -> \n";
 			int z; 
@@ -139,7 +139,7 @@ void Menu() {
 			{
 			case 1:
 				system("cls");
-				back();
+				Menu();
 				break;
 			case 2:
 				system("cls");
@@ -149,8 +149,8 @@ void Menu() {
 			break;
 		case 4:
 			system("cls");
-			Reserve();
-			cout << "1. Назад \n";
+			tickets.Reserve();
+			cout << "1. В главное меню \n";
 			cout << "2. Выход \n";
 			cout << "Выберите действие -> \n";
 			int s;
@@ -159,24 +159,7 @@ void Menu() {
 			{
 			case 1:
 				system("cls");
-				back();
-				cout << "1. В главное меню \n";
-				cout << "2. Выход \n";
-				cout << "Выберите действие -> \n";
-				int w;
-				cin >> w;
-				switch (w)
-				{
-				case 1:
-					system("cls");
-					Menu();
-					break;
-				case 2:
-					system("cls");
-					exit(0);
-					break;
-				}
-				break;
+				Menu();
 			case 2:
 				system("cls");
 				exit(0);
@@ -193,7 +176,7 @@ void Menu() {
 	}
 }
 
-void Perfomances() {
+void Tickets::Perfomances() {
 	setlocale(0, "rus");
 	ifstream file("Perfomances.txt");
 	if (!file.is_open()) {
@@ -201,7 +184,7 @@ void Perfomances() {
 		return;
 	}
 	string line;
-	for (int i = 0; i < !file.eof(); i++) {
+	for (int i = 0; !file.eof(); i++) {
 		getline(file, line);
 		if (line.empty()) {
 			continue;
@@ -211,7 +194,7 @@ void Perfomances() {
 	file.close();
 }
 
-void Basket() {
+void Tickets::Basket() {
 	setlocale(0, "rus");
 	ifstream file("Basket.txt");
 	if (!file.is_open()) {
@@ -219,7 +202,7 @@ void Basket() {
 		return;
 	}
 	string line;
-	for (int i = 0; i < !file.eof(); i++) {
+	for (int i = 0; !file.eof(); i++) {
 		getline(file, line);
 		if (line.empty()) {
 			continue;
@@ -229,7 +212,7 @@ void Basket() {
 	file.close();
 }
 
-void Reserve() {
+void Tickets::Reserve() {
 	setlocale(0, "rus");
 	ifstream file("Reserve.txt");
 	if (!file.is_open()) {
@@ -237,7 +220,7 @@ void Reserve() {
 		return;
 	}
 	string line;
-	for (int i = 0; i < !file.eof(); i++) {
+	for (int i = 0; !file.eof(); i++) {
 		getline(file, line);
 		if (line.empty()) {
 			continue;
@@ -247,7 +230,7 @@ void Reserve() {
 	file.close();
 }
 
-void Tickets::buyTickets() {
+void Tickets::buy() {
 	SetConsoleCP(1251);
 	SetConsoleOutputCP(1251);
 	Tickets buy;
@@ -266,9 +249,10 @@ void Tickets::buyTickets() {
 	cout << "Введите кол-во мест \n";
 	buy.set_seats();
 	file << buy.get_type() << ' ' << buy.get_name() << ' ' << buy.get_date() << ' ' << buy.get_seats() << endl;
+	file.close();
 }
 
-void Tickets::reserveTickets() {
+void Tickets::ToReserve() {
 	SetConsoleCP(1251);
 	SetConsoleOutputCP(1251);
 	Tickets reserve;
@@ -290,7 +274,7 @@ void Tickets::reserveTickets() {
 	file.close();
 }
 
-void head()
+void Tickets::head()
 {
 	for (int i(0); i < 62; i++) cout << "-";
 	cout << endl;
@@ -299,15 +283,11 @@ void head()
 	cout << endl;
 }
 
-void headBasket()
+void Tickets::headBasket()
 {
 	for (int i(0); i < 62; i++) cout << "-";
 	cout << endl;
 	cout << "| Название " << "| Дата " << "| Партер " << "| Амфитеатр " << "| Бельэтаж " << "| Балкон " << "| Ложа |" << endl;
 	for (int i(0); i < 62; i++) cout << "-";
 	cout << endl;
-}
-
-void back() {
-	Menu();
 }
