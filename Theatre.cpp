@@ -4,112 +4,129 @@
 #include <fstream>
 
 void Menu() {
-	Tickets buy;
+	Tickets tickets;
 	for (;;)
 	{
-		cout << "Что хотите сделать? \n";
-		cout << "1. Посмотреть спектакли \n";
-		cout << "2. Поиск по названию \n";
-		cout << "3. Посмотреть купленные билеты \n";
-		cout << "4. Посмотреть забранированные билеты \n";
-		cout << "5. Выход \n";
-		cout << "Выберите действие -> \n";
 		int x;
-		cin >> x;
-		switch (x)
+		do
 		{
-		case 1:
 			system("cls");
-			head();
-			Perfomances();
 			cout << "Что хотите сделать? \n";
-			cout << "1. Купить билеты \n";
-			cout << "2. Забронировать билеты \n";
-			cout << "3. Назад \n";
-			cout << "4. Выход \n";
-			cout << "Выберите действие -> \n";
-			int y;
-			cin >> y;
-			switch (y)
+			cout << "1. Посмотреть спектакли \n";
+			cout << "2. Поиск по названию \n";
+			cout << "3. Посмотреть купленные билеты \n";
+			cout << "4. Посмотреть забранированные билеты \n";
+			cout << "5. Выход \n";
+			cout << "Выберите действие -> ";
+			cin >> x;
+			switch (x)
 			{
 			case 1:
 				system("cls");
-				Perfomances();
-				buy.buyTickets();
-				cout << "1. В главное меню \n";
-				cout << "2. Посмотреть купленные билеты \n";
-				cout << "3. Выход \n";
-				int e;
-				cin >> e;
-				switch (e)
+				//tickets.head();
+				tickets.Perfomances();
+				cout << "Что хотите сделать? \n";
+				cout << "1. Купить билеты \n";
+				cout << "2. Забронировать билеты \n";
+				cout << "3. В главное меню \n";
+				cout << "4. Выход \n";
+				cout << "Выберите действие -> ";
+				int y;
+				cin >> y;
+				switch (y)
 				{
 				case 1:
 					system("cls");
-					back();
-					break;
-				case 2:
-					system("cls");
-					Basket();
+					tickets.Perfomances();
+					cout << '\n';
+					tickets.buy();
 					cout << "1. В главное меню \n";
-					cout << "2. Выход \n";
-					cout << "Выберите действие -> \n";
-					int c;
-					cin >> c;
-					switch (c)
+					cout << "2. Посмотреть купленные билеты \n";
+					cout << "3. Выход \n";
+					cout << "Выберите действие -> ";
+					int e;
+					cin >> e;
+					switch (e)
 					{
 					case 1:
 						system("cls");
-						back();
+						Menu();
 						break;
 					case 2:
 						system("cls");
+						tickets.Basket();
+						cout << "1. В главное меню \n";
+						cout << "2. Выход \n";
+						cout << "Выберите действие -> ";
+						int c;
+						cin >> c;
+						switch (c)
+						{
+						case 1:
+							system("cls");
+							Menu();
+							break;
+						case 2:
+							system("cls");
+							exit(0);
+							break;
+						}
+						break;
+					case 3:
+						system("cls");
 						exit(0);
 						break;
+					default: cout << "Попробуйте снова \n";
 					}
-					break;
-				case 3:
-					system("cls");
-					exit(0);
-					break;
-				default: cout << "Попробуйте снова \n";
-				}
-				break;
-			case 2:
-				system("cls");
-				Perfomances();
-				buy.reserveTickets();
-				cout << "1. В главное меню \n";
-				cout << "2. Посмотреть купленные билеты \n";
-				cout << "3. Выход \n";
-				int q;
-				cin >> q;
-				switch (q)
-				{
-				case 1:
-					system("cls");
-					back();
 					break;
 				case 2:
 					system("cls");
-					Basket();
-					cout << "1. Назад \n";
-					cout << "2. Выход \n";
-					cout << "Выберите действие -> \n";
-					int d;
-					cin >> d;
-					switch (d)
+					tickets.Perfomances();
+					tickets.ToReserve();
+					cout << "1. В главное меню \n";
+					cout << "2. Посмотреть купленные билеты \n";
+					cout << "3. Выход \n";
+					cout << "Выберите действие -> ";
+					int q;
+					cin >> q;
+					switch (q)
 					{
 					case 1:
 						system("cls");
-						back();
+						Menu();
 						break;
 					case 2:
 						system("cls");
+						tickets.Basket();
+						cout << "1. В главное меню \n";
+						cout << "2. Выход \n";
+						cout << "Выберите действие -> ";
+						int d;
+						cin >> d;
+						switch (d)
+						{
+						case 1:
+							system("cls");
+							Menu();
+							break;
+						case 2:
+							system("cls");
+							exit(0);
+							break;
+						}
+						break;
+					case 3:
+						system("cls");
 						exit(0);
 						break;
+					default: cout << "Попробуйте снова \n";
 					}
 					break;
 				case 3:
+					system("cls");
+					Menu();
+					break;
+				case 4:
 					system("cls");
 					exit(0);
 					break;
@@ -118,54 +135,13 @@ void Menu() {
 				break;
 			case 3:
 				system("cls");
-				back();
-				break;
-			case 4:
-				system("cls");
-				exit(0);
-				break;
-			default: cout << "Попробуйте снова \n";
-			}
-			break;
-		case 3:
-			system("cls");
-			Basket();
-			cout << "1. Назад \n";
-			cout << "2. Выход \n";
-			cout << "Выберите действие -> \n";
-			int z; 
-			cin >> z;
-			switch (z)
-			{
-			case 1:
-				system("cls");
-				back();
-				break;
-			case 2:
-				system("cls");
-				exit(0);
-				break;
-			}
-			break;
-		case 4:
-			system("cls");
-			Reserve();
-			cout << "1. Назад \n";
-			cout << "2. Выход \n";
-			cout << "Выберите действие -> \n";
-			int s;
-			cin >> s;
-			switch (s)
-			{
-			case 1:
-				system("cls");
-				back();
+				tickets.Basket();
 				cout << "1. В главное меню \n";
 				cout << "2. Выход \n";
-				cout << "Выберите действие -> \n";
-				int w;
-				cin >> w;
-				switch (w)
+				cout << "Выберите действие -> ";
+				int z;
+				cin >> z;
+				switch (z)
 				{
 				case 1:
 					system("cls");
@@ -177,23 +153,36 @@ void Menu() {
 					break;
 				}
 				break;
-			case 2:
+			case 4:
+				system("cls");
+				tickets.Reserve();
+				cout << "1. В главное меню \n";
+				cout << "2. Выход \n";
+				cout << "Выберите действие -> ";
+				int s;
+				cin >> s;
+				switch (s)
+				{
+				case 1:
+					system("cls");
+					Menu();
+				case 2:
+					system("cls");
+					exit(0);
+					break;
+				}
+				break;
+			case 5:
 				system("cls");
 				exit(0);
 				break;
 			}
 			break;
-		case 5:
-			system("cls");
-			exit(0);
-			break;
-		default: cout << "Попробуйте снова \n";
-		}
-		break;
-	}
+		}while (x < 1 || x > 5);
+	} 
 }
 
-void Perfomances() {
+void Tickets::Perfomances() {
 	setlocale(0, "rus");
 	ifstream file("Perfomances.txt");
 	if (!file.is_open()) {
@@ -201,7 +190,7 @@ void Perfomances() {
 		return;
 	}
 	string line;
-	for (int i = 0; i < !file.eof(); i++) {
+	for (int i = 0; !file.eof(); i++) {
 		getline(file, line);
 		if (line.empty()) {
 			continue;
@@ -211,7 +200,7 @@ void Perfomances() {
 	file.close();
 }
 
-void Basket() {
+void Tickets::Basket() {
 	setlocale(0, "rus");
 	ifstream file("Basket.txt");
 	if (!file.is_open()) {
@@ -219,7 +208,7 @@ void Basket() {
 		return;
 	}
 	string line;
-	for (int i = 0; i < !file.eof(); i++) {
+	for (int i = 0; !file.eof(); i++) {
 		getline(file, line);
 		if (line.empty()) {
 			continue;
@@ -229,7 +218,7 @@ void Basket() {
 	file.close();
 }
 
-void Reserve() {
+void Tickets::Reserve() {
 	setlocale(0, "rus");
 	ifstream file("Reserve.txt");
 	if (!file.is_open()) {
@@ -237,7 +226,7 @@ void Reserve() {
 		return;
 	}
 	string line;
-	for (int i = 0; i < !file.eof(); i++) {
+	for (int i = 0; !file.eof(); i++) {
 		getline(file, line);
 		if (line.empty()) {
 			continue;
@@ -247,7 +236,7 @@ void Reserve() {
 	file.close();
 }
 
-void Tickets::buyTickets() {
+void Tickets::buy() {
 	SetConsoleCP(1251);
 	SetConsoleOutputCP(1251);
 	Tickets buy;
@@ -265,10 +254,12 @@ void Tickets::buyTickets() {
 	buy.set_seats();
 	cout << "Введите кол-во мест \n";
 	buy.set_seats();
-	file << buy.get_type() << ' ' << buy.get_name() << ' ' << buy.get_date() << ' ' << buy.get_seats() << endl;
+	file << buy.get_type() << ' ' << buy.get_name() << ' ' << buy.get_date() << ' '
+		<< buy.get_seats() << endl;
+	file.close();
 }
 
-void Tickets::reserveTickets() {
+void Tickets::ToReserve() {
 	SetConsoleCP(1251);
 	SetConsoleOutputCP(1251);
 	Tickets reserve;
@@ -290,24 +281,22 @@ void Tickets::reserveTickets() {
 	file.close();
 }
 
-void head()
+/*void Tickets::head()
 {
 	for (int i(0); i < 62; i++) cout << "-";
 	cout << endl;
 	cout << "| Вид" << "|Название" << "|Дата" << "|Цена(руб)" << "|Длит-ть представления(мин)" << "|Свободных мест|" << endl;
 	for (int i(0); i < 62; i++) cout << "-";
 	cout << endl;
-}
+}*/
 
-void headBasket()
+/*void Tickets::headBasket()
 {
 	for (int i(0); i < 62; i++) cout << "-";
 	cout << endl;
 	cout << "| Название " << "| Дата " << "| Партер " << "| Амфитеатр " << "| Бельэтаж " << "| Балкон " << "| Ложа |" << endl;
 	for (int i(0); i < 62; i++) cout << "-";
 	cout << endl;
-}
+}*/
 
-void back() {
-	Menu();
-}
+
