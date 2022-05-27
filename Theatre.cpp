@@ -1,10 +1,8 @@
 ﻿#include "Header.h"
 #include <Windows.h>
-#include <iostream>
-#include <fstream>
 
 void Menu() {
-	Tickets tickets;
+	Ticket tickets;
 	for (;;)
 	{
 		int x;
@@ -54,7 +52,7 @@ void Menu() {
 						break;
 					case 2:
 						system("cls");
-						tickets.Basket();
+						//tickets.Basket();
 						cout << "1. В главное меню \n";
 						cout << "2. Выход \n";
 						cout << "Выберите действие -> ";
@@ -82,7 +80,6 @@ void Menu() {
 				case 2:
 					system("cls");
 					tickets.Perfomances();
-					tickets.ToReserve();
 					cout << "1. В главное меню \n";
 					cout << "2. Посмотреть купленные билеты \n";
 					cout << "3. Выход \n";
@@ -97,7 +94,7 @@ void Menu() {
 						break;
 					case 2:
 						system("cls");
-						tickets.Basket();
+						//tickets.Basket();
 						cout << "1. В главное меню \n";
 						cout << "2. Выход \n";
 						cout << "Выберите действие -> ";
@@ -135,7 +132,7 @@ void Menu() {
 				break;
 			case 3:
 				system("cls");
-				tickets.Basket();
+				//tickets.Basket();
 				cout << "1. В главное меню \n";
 				cout << "2. Выход \n";
 				cout << "Выберите действие -> ";
@@ -155,7 +152,7 @@ void Menu() {
 				break;
 			case 4:
 				system("cls");
-				tickets.Reserve();
+				//tickets.Reserve();
 				cout << "1. В главное меню \n";
 				cout << "2. Выход \n";
 				cout << "Выберите действие -> ";
@@ -182,7 +179,7 @@ void Menu() {
 	} 
 }
 
-void Tickets::Perfomances() {
+void Ticket::Perfomances() {
 	setlocale(0, "rus");
 	ifstream file("Perfomances.txt");
 	if (!file.is_open()) {
@@ -195,51 +192,15 @@ void Tickets::Perfomances() {
 		if (line.empty()) {
 			continue;
 		}
-		cout << i + 1 << ' ' << line << endl;
+		cout << i << ' ' << line << endl;
 	}
 	file.close();
 }
 
-void Tickets::Basket() {
-	setlocale(0, "rus");
-	ifstream file("Basket.txt");
-	if (!file.is_open()) {
-		cout << "Корзина пуста!" << '\n';
-		return;
-	}
-	string line;
-	for (int i = 0; !file.eof(); i++) {
-		getline(file, line);
-		if (line.empty()) {
-			continue;
-		}
-		cout << i + 1 << ' ' << line << endl;
-	}
-	file.close();
-}
-
-void Tickets::Reserve() {
-	setlocale(0, "rus");
-	ifstream file("Reserve.txt");
-	if (!file.is_open()) {
-		cout << "Нет забронированных билетов!" << '\n';
-		return;
-	}
-	string line;
-	for (int i = 0; !file.eof(); i++) {
-		getline(file, line);
-		if (line.empty()) {
-			continue;
-		}
-		cout << i + 1 << ' ' << line << endl;
-	}
-	file.close();
-}
-
-void Tickets::buy() {
+/*void Ticket::buy() {
 	SetConsoleCP(1251);
 	SetConsoleOutputCP(1251);
-	Tickets buy;
+	Ticket buy;
 	ofstream file("Basket.txt");
 	if (!file.is_open()) {
 		cout << "[-] File is not opened!";
@@ -257,46 +218,84 @@ void Tickets::buy() {
 	file << buy.get_type() << ' ' << buy.get_name() << ' ' << buy.get_date() << ' '
 		<< buy.get_seats() << endl;
 	file.close();
-}
+}*/
 
-void Tickets::ToReserve() {
-	SetConsoleCP(1251);
-	SetConsoleOutputCP(1251);
-	Tickets reserve;
-	ofstream file("Reserve.txt");
+string* TicketsControl::Search(const string& STicket, int count) {
+	ifstream file("Perfomances.txt");
 	if (!file.is_open()) {
 		cout << "[-] File is not opened!";
 		exit(EXIT_FAILURE);
 	}
-	reserve.set_type();
-	cout << "Введите тип представления билеты на которое хотите забронировать билеты\n";
-	reserve.set_name();
-	cout << "Введите название представления на которое хотите забронировать билеты\n";
-	reserve.set_date();
-	cout << "Введите дату представления \n";
-	reserve.set_seats();
-	cout << "Введите кол-во мест \n";
-	reserve.set_seats();
-	file << reserve.get_type() << ' ' << reserve.get_name() << ' ' << reserve.get_date() << ' ' << reserve.get_seats() << endl;
+	string ticket;
+	string* FTickets = nullptr;
+	string* tmp = nullptr;
+	int k = 0;
+	while (!file.eof()) {
+		getline(file, ticket);
+		if (ticket.find(STicket) != -1) {
+			k+=1;
+			tmp = new string[k];
+			for (int i = 0; i < k - 1; i++) {
+				tmp[i] = FTickets[i];
+			}
+			tmp[k - 1] = ticket;
+			delete FTickets;
+			FTickets = tmp;
+		}
+	}
 	file.close();
+	count = k;
+	return FTickets;
 }
 
-/*void Tickets::head()
-{
-	for (int i(0); i < 62; i++) cout << "-";
-	cout << endl;
-	cout << "| Вид" << "|Название" << "|Дата" << "|Цена(руб)" << "|Длит-ть представления(мин)" << "|Свободных мест|" << endl;
-	for (int i(0); i < 62; i++) cout << "-";
-	cout << endl;
-}*/
+void Ticket::buy() {
+	Ticket t;
+	vector<string> strs;
+	cout << "Выберите билет, который хотите купить: \n";
+	int x = 0;
+	cin >> x;
+	ifstream file("Perfomances.txt");
+	if (!file.is_open()) {
+		cout << "[-] File is not opened!";
+		exit(EXIT_FAILURE);
+	}
+	string line;
+	while (!file.eof()) {
+		getline(file, line);
+		strs.push_back(line);
+	}
+	vector<string> ticket;
+	boost::split(ticket, strs[x], boost::is_any_of(" "));
+	if(ticket[0] == "Sold"){
+		state = Sold;
+		cout << "Билет уже куплен!\n";
+	}
+	else if (ticket[0] == "Free") {
+		state = Sold;
+	}
+	file.close();
+	ofstream File("Perfomances.txt");
+	t.set_status(state);
+	t.set_name(ticket[1]);
+	t.set_type(ticket[2]);
+	t.set_date(ticket[3]);
+	t.set_cost(ticket[4]);
+	t.set_duration(ticket[5]);
+	t.set_row(ticket[6]);
+	t.set_seat(ticket[7]);
+	File << t.get_status() << ' ' << t.get_name() << ' ' << t.get_type() << ' ' << t.get_date() << ' ' << t.get_cost() << ' ' << t.get_duration() << ' '
+		<< t.get_row() << ' ' << t.get_seat() << ' ' << endl;
+	File.close();
+	ifstream Nfile("Perfomances.txt");
+	getline(Nfile, strs[x]);
+	Nfile.close();
+	ofstream FILE("Perfomances.txt");
+	for (int i = 0; i < strs.size(); i++) {
+		FILE << strs[i] << endl;
+	}
+	FILE.close();
+}
 
-/*void Tickets::headBasket()
-{
-	for (int i(0); i < 62; i++) cout << "-";
-	cout << endl;
-	cout << "| Название " << "| Дата " << "| Партер " << "| Амфитеатр " << "| Бельэтаж " << "| Балкон " << "| Ложа |" << endl;
-	for (int i(0); i < 62; i++) cout << "-";
-	cout << endl;
-}*/
+
 
 

@@ -4,49 +4,56 @@
 #include <string>
 #include <fstream>
 #include <vector>
+#include <algorithm>
+#include <boost/algorithm/string.hpp>
 
 using namespace std;
 
 void Menu();
 
-class Tickets {
+enum Status {
+	Free,
+	Sold
+};
+
+class Ticket {
 private:
+	Status state;
 	string name;
 	string date;
 	string type;
 	string cost;
 	string duration;
-	string seats;
+	string row;
+	string seat;
 public:
-	void set_name() {
-		string NAME;
-		getline(cin, NAME);
+	void buy();
+	void set_status(Status STATE) {
+		state = STATE;
+	}
+	void set_name(string NAME) {
 		name = NAME;
 	}
-	void set_type() {
-		string TYPE;
-		getline(cin, TYPE);
+	void set_type(string TYPE) {
 		type = TYPE;
 	}
-	void set_date() {
-		string DATE;
-		getline(cin, DATE);
+	void set_date(string DATE) {
 		date = DATE;
 	}
-	void set_cost() {
-		string COST;
-		getline(cin, COST);
+	void set_cost(string COST) {
 		cost = COST;
 	}
-	void set_duration() {
-		string DURATION;
-		getline(cin, DURATION);
+	void set_duration(string DURATION) {
 		duration = DURATION;
 	}
-	void set_seats() {
-		string SEATS;
-		getline(cin, SEATS);
-		seats = SEATS;
+	void set_row(string ROW){
+		row = ROW;
+	}
+	void set_seat(string SEAT) {
+		seat = SEAT;
+	}
+	Status get_status() {
+		return state;
 	}
 	string get_name() {
 		return name;
@@ -60,43 +67,25 @@ public:
 	string get_cost() {
 		return cost;
 	}
-	string get_duratiion() {
+	string get_duration() {
 		return duration;
 	}
-	string get_seats() {
-		return seats;
+	string get_row() {
+		return row;
 	}
-	void buy();
-	void ToReserve();
+	string get_seat() {
+		return seat;
+	}
 	void Perfomances();
-	void Basket();
-	void Reserve();
-	void head();
-	void headBasket();
+	//void Basket();
+	//void Reserve();
 };
 
-class Seats {
-private:
-	string amount;
-	string cost;
+class TicketsControl {
 public:
-	void set_cost() {
-		string COST;
-		getline(cin, COST);
-		cost = COST;
-	}
-	void set_amount() {
-		string AMOUNT;
-		getline(cin, AMOUNT);
-		amount = AMOUNT;
-	}
-	string get_amount() {
-		return amount;
-	}
-	string get_cost() {
-		return cost;
-	}
+	string* Search(const string&, int);
 };
+
 
 
 #endif // HEADER_H
