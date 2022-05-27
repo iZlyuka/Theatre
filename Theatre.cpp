@@ -2,45 +2,46 @@
 #include <Windows.h>
 
 void Menu() {
+	SetConsoleCP(1251);
+	SetConsoleOutputCP(1251);
 	Ticket tickets;
+	TicketsControl TC;
 	for (;;)
 	{
-		int x;
+		int x = 0;
 		do
 		{
 			system("cls");
 			cout << "Что хотите сделать? \n";
-			cout << "1. Посмотреть спектакли \n";
-			cout << "2. Поиск по названию \n";
-			cout << "3. Посмотреть купленные билеты \n";
-			cout << "4. Посмотреть забранированные билеты \n";
-			cout << "5. Выход \n";
+			cout << "1. Посмотреть билеты \n";
+			cout << "2. Поиск \n";
+			cout << "3. Выход \n";
 			cout << "Выберите действие -> ";
 			cin >> x;
 			switch (x)
 			{
 			case 1:
+			{
 				system("cls");
 				//tickets.head();
-				tickets.Perfomances();
+				TC.Tickets();
 				cout << "Что хотите сделать? \n";
 				cout << "1. Купить билеты \n";
-				cout << "2. Забронировать билеты \n";
-				cout << "3. В главное меню \n";
-				cout << "4. Выход \n";
+				cout << "2. В главное меню \n";
+				cout << "3. Выход \n";
 				cout << "Выберите действие -> ";
 				int y;
 				cin >> y;
 				switch (y)
 				{
 				case 1:
+				{
 					system("cls");
-					tickets.Perfomances();
+					TC.Tickets();
 					cout << '\n';
-					tickets.buy();
+					TC.buy();
 					cout << "1. В главное меню \n";
-					cout << "2. Посмотреть купленные билеты \n";
-					cout << "3. Выход \n";
+					cout << "2. Выход \n";
 					cout << "Выберите действие -> ";
 					int e;
 					cin >> e;
@@ -52,26 +53,6 @@ void Menu() {
 						break;
 					case 2:
 						system("cls");
-						//tickets.Basket();
-						cout << "1. В главное меню \n";
-						cout << "2. Выход \n";
-						cout << "Выберите действие -> ";
-						int c;
-						cin >> c;
-						switch (c)
-						{
-						case 1:
-							system("cls");
-							Menu();
-							break;
-						case 2:
-							system("cls");
-							exit(0);
-							break;
-						}
-						break;
-					case 3:
-						system("cls");
 						exit(0);
 						break;
 					default: cout << "Попробуйте снова \n";
@@ -79,62 +60,37 @@ void Menu() {
 					break;
 				case 2:
 					system("cls");
-					tickets.Perfomances();
-					cout << "1. В главное меню \n";
-					cout << "2. Посмотреть купленные билеты \n";
-					cout << "3. Выход \n";
-					cout << "Выберите действие -> ";
-					int q;
-					cin >> q;
-					switch (q)
-					{
-					case 1:
-						system("cls");
-						Menu();
-						break;
-					case 2:
-						system("cls");
-						//tickets.Basket();
-						cout << "1. В главное меню \n";
-						cout << "2. Выход \n";
-						cout << "Выберите действие -> ";
-						int d;
-						cin >> d;
-						switch (d)
-						{
-						case 1:
-							system("cls");
-							Menu();
-							break;
-						case 2:
-							system("cls");
-							exit(0);
-							break;
-						}
-						break;
-					case 3:
-						system("cls");
-						exit(0);
-						break;
-					default: cout << "Попробуйте снова \n";
-					}
-					break;
-				case 3:
-					system("cls");
 					Menu();
 					break;
-				case 4:
+				case 3:
 					system("cls");
 					exit(0);
 					break;
 				default: cout << "Попробуйте снова \n";
 				}
 				break;
-			case 3:
+				}
+			}
+			case 2:
+			{
 				system("cls");
-				//tickets.Basket();
-				cout << "1. В главное меню \n";
-				cout << "2. Выход \n";
+				string STicket;
+				cout << "Введите название/вид/дату(в виде xx/xx/xx)/цену для поиска: \n";
+				cin >> STicket;
+				int count = 0;
+				string* FTickets = TC.Search(STicket, count);
+				if (FTickets) {
+					for (int i = 0; i < count; i++) {
+						cout << FTickets[i] << endl;
+					}
+					delete[] FTickets;
+				}
+				else {
+					cout << "Не найдено билетов по заданному критерию" << endl;
+				}
+				cout << "1. Купить билет\n";
+				cout << "2. В главное меню \n";
+				cout << "3. Выход \n";
 				cout << "Выберите действие -> ";
 				int z;
 				cin >> z;
@@ -142,46 +98,35 @@ void Menu() {
 				{
 				case 1:
 					system("cls");
-					Menu();
+					TC.Tickets();
+					cout << '\n';
+					TC.buy();
 					break;
 				case 2:
+					system("cls");
+					Menu();
+					break;
+				case 3:
 					system("cls");
 					exit(0);
 					break;
 				}
-				break;
-			case 4:
-				system("cls");
-				//tickets.Reserve();
-				cout << "1. В главное меню \n";
-				cout << "2. Выход \n";
-				cout << "Выберите действие -> ";
-				int s;
-				cin >> s;
-				switch (s)
-				{
-				case 1:
-					system("cls");
-					Menu();
-				case 2:
-					system("cls");
-					exit(0);
-					break;
-				}
-				break;
-			case 5:
+			}
+			case 3:
+			{
 				system("cls");
 				exit(0);
 				break;
 			}
 			break;
-		}while (x < 1 || x > 5);
+			}
+		}while (x < 1 || x > 3);
 	} 
 }
 
-void Ticket::Perfomances() {
+void TicketsControl::Tickets() {
 	setlocale(0, "rus");
-	ifstream file("Perfomances.txt");
+	ifstream file("Tickets.txt");
 	if (!file.is_open()) {
 		cout << "Спектаклей нет!" << '\n';
 		return;
@@ -197,31 +142,10 @@ void Ticket::Perfomances() {
 	file.close();
 }
 
-/*void Ticket::buy() {
+string* TicketsControl::Search(const string& STicket, int& count) {
 	SetConsoleCP(1251);
 	SetConsoleOutputCP(1251);
-	Ticket buy;
-	ofstream file("Basket.txt");
-	if (!file.is_open()) {
-		cout << "[-] File is not opened!";
-		exit(EXIT_FAILURE);
-	}
-	buy.set_type();
-	cout << "Введите тип представления на которое вы хотите купить билеты\n";
-	buy.set_name();
-	cout << "Введите название представления на которое хотите купить билеты\n";
-	buy.set_date();
-	cout << "Введите дату представления \n";
-	buy.set_seats();
-	cout << "Введите кол-во мест \n";
-	buy.set_seats();
-	file << buy.get_type() << ' ' << buy.get_name() << ' ' << buy.get_date() << ' '
-		<< buy.get_seats() << endl;
-	file.close();
-}*/
-
-string* TicketsControl::Search(const string& STicket, int count) {
-	ifstream file("Perfomances.txt");
+	ifstream file("Tickets.txt");
 	if (!file.is_open()) {
 		cout << "[-] File is not opened!";
 		exit(EXIT_FAILURE);
@@ -233,13 +157,13 @@ string* TicketsControl::Search(const string& STicket, int count) {
 	while (!file.eof()) {
 		getline(file, ticket);
 		if (ticket.find(STicket) != -1) {
-			k+=1;
+			k++;
 			tmp = new string[k];
 			for (int i = 0; i < k - 1; i++) {
 				tmp[i] = FTickets[i];
 			}
 			tmp[k - 1] = ticket;
-			delete FTickets;
+			delete[] FTickets;
 			FTickets = tmp;
 		}
 	}
@@ -248,13 +172,13 @@ string* TicketsControl::Search(const string& STicket, int count) {
 	return FTickets;
 }
 
-void Ticket::buy() {
+void TicketsControl::buy() {
 	Ticket t;
 	vector<string> strs;
 	cout << "Выберите билет, который хотите купить: \n";
 	int x = 0;
 	cin >> x;
-	ifstream file("Perfomances.txt");
+	ifstream file("Tickets.txt");
 	if (!file.is_open()) {
 		cout << "[-] File is not opened!";
 		exit(EXIT_FAILURE);
@@ -265,37 +189,35 @@ void Ticket::buy() {
 		strs.push_back(line);
 	}
 	vector<string> ticket;
-	boost::split(ticket, strs[x], boost::is_any_of(" "));
+	boost::split(ticket, strs[x], boost::is_any_of("|"));
 	if(ticket[0] == "Sold"){
-		state = Sold;
 		cout << "Билет уже куплен!\n";
 	}
 	else if (ticket[0] == "Free") {
-		state = Sold;
+		ticket[0] = "Sold";
+		file.close();
+		ofstream File("Tickets.txt");
+		t.set_status(ticket[0]);
+		t.set_name(ticket[1]);
+		t.set_type(ticket[2]);
+		t.set_date(ticket[3]);
+		t.set_cost(ticket[4]);
+		t.set_duration(ticket[5]);
+		t.set_row(ticket[6]);
+		t.set_seat(ticket[7]);
+		File << t.get_status() << '|' << t.get_name() << '|' << t.get_type() << '|' << t.get_date() << '|' << t.get_cost() << '|' << t.get_duration() << '|'
+			<< t.get_row() << '|' << t.get_seat() << '|' << endl;
+		File.close();
+		ifstream Nfile("Tickets.txt");
+		string bought_ticket;
+		getline(Nfile, strs[x]);
+		bought_ticket = strs[x];
+		Nfile.close();
+		ofstream FILE("Tickets.txt");
+		for (int i = 0; i < strs.size(); i++) {
+			FILE << strs[i] << endl;
+		}
+		cout << "Вы купили билет: " << bought_ticket << endl;
+		FILE.close();
 	}
-	file.close();
-	ofstream File("Perfomances.txt");
-	t.set_status(state);
-	t.set_name(ticket[1]);
-	t.set_type(ticket[2]);
-	t.set_date(ticket[3]);
-	t.set_cost(ticket[4]);
-	t.set_duration(ticket[5]);
-	t.set_row(ticket[6]);
-	t.set_seat(ticket[7]);
-	File << t.get_status() << ' ' << t.get_name() << ' ' << t.get_type() << ' ' << t.get_date() << ' ' << t.get_cost() << ' ' << t.get_duration() << ' '
-		<< t.get_row() << ' ' << t.get_seat() << ' ' << endl;
-	File.close();
-	ifstream Nfile("Perfomances.txt");
-	getline(Nfile, strs[x]);
-	Nfile.close();
-	ofstream FILE("Perfomances.txt");
-	for (int i = 0; i < strs.size(); i++) {
-		FILE << strs[i] << endl;
-	}
-	FILE.close();
 }
-
-
-
-

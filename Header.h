@@ -11,14 +11,9 @@ using namespace std;
 
 void Menu();
 
-enum Status {
-	Free,
-	Sold
-};
-
 class Ticket {
 private:
-	Status state;
+	string state;
 	string name;
 	string date;
 	string type;
@@ -27,8 +22,7 @@ private:
 	string row;
 	string seat;
 public:
-	void buy();
-	void set_status(Status STATE) {
+	void set_status(string STATE) {
 		state = STATE;
 	}
 	void set_name(string NAME) {
@@ -52,7 +46,7 @@ public:
 	void set_seat(string SEAT) {
 		seat = SEAT;
 	}
-	Status get_status() {
+	string get_status() {
 		return state;
 	}
 	string get_name() {
@@ -76,14 +70,13 @@ public:
 	string get_seat() {
 		return seat;
 	}
-	void Perfomances();
-	//void Basket();
-	//void Reserve();
 };
 
 class TicketsControl {
 public:
-	string* Search(const string&, int);
+	string* Search(const string&, int&);
+	void Tickets();
+	void buy();
 };
 
 

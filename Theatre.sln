@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.31729.503
+# Visual Studio Version 17
+VisualStudioVersion = 17.2.32519.379
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Theatre", "Theatre.vcxproj", "{B3465129-9E96-4F42-85D7-D4F075C51F5F}"
 EndProject
@@ -9,8 +9,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 	ProjectSection(SolutionItems) = preProject
 		Basket.txt = Basket.txt
 		LittleC.txt = LittleC.txt
-		Perfomances.txt = Perfomances.txt
 		Reserve.txt = Reserve.txt
+		Tickets.txt = Tickets.txt
 	EndProjectSection
 EndProject
 Global

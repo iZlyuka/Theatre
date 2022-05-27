@@ -35,3 +35,44 @@ Sold МаленькиеКомедии Спектакль 14/07/22 1500 120 25 5
 Free МаленькиеКомедии Спектакль 14/07/22 1500 120 25 264 
 Sold МаленькиеКомедии Спектакль 14/07/22 1500 120 25 4 
 
+{
+				system("cls");
+				string STicket;
+				cout << "Введите название/вид/дату(в виде xx/xx/xx)/цену для поиска: \n";
+				getline(cin, STicket);
+				int count = 0;
+				string* FTickets = TC.Search(STicket, count);
+				if (FTickets) {
+					for (int i = 0; i < count; i++) {
+						cout << FTickets[i] << endl;
+					}
+					delete[] FTickets;
+				}
+				else {
+					cout << "Не найдено билетов по заданному критерию" << endl;
+				}
+				/*cout << "1. Купить билет\n";
+				cout << "2. В главное меню \n";
+				cout << "3. Выход \n";
+				cout << "Выберите действие -> ";
+				int z;
+				cin >> z;
+				switch (z)
+				{
+				case 1:
+					system("cls");
+					tickets.Tickets();
+					cout << '\n';
+					tickets.buy();
+					break;
+				case 2:
+					system("cls");
+					Menu();
+					break;
+				case 3:
+					system("cls");
+					exit(0);
+					break;
+				}*/
+			break;
+			}

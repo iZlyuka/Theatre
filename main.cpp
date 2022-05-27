@@ -5,9 +5,6 @@
 int main()
 {
 	setlocale(0, "rus");
-	//Menu();
-	Ticket t;
-	t.Perfomances();
-	t.buy();
+	Menu();
 }
  
