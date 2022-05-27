@@ -76,9 +76,9 @@ class TicketsControl {
 public:
 	string* Search(const string&, int&);
 	void Tickets();
-	void buy();
+	void sell();
 };
 
-
+void Head();
 
 #endif // HEADER_H

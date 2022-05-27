@@ -23,10 +23,9 @@ void Menu() {
 			case 1:
 			{
 				system("cls");
-				//tickets.head();
 				TC.Tickets();
 				cout << "Что хотите сделать? \n";
-				cout << "1. Купить билеты \n";
+				cout << "1. Продать билеты \n";
 				cout << "2. В главное меню \n";
 				cout << "3. Выход \n";
 				cout << "Выберите действие -> ";
@@ -39,7 +38,7 @@ void Menu() {
 					system("cls");
 					TC.Tickets();
 					cout << '\n';
-					TC.buy();
+					TC.sell();
 					cout << "1. В главное меню \n";
 					cout << "2. Выход \n";
 					cout << "Выберите действие -> ";
@@ -88,7 +87,7 @@ void Menu() {
 				else {
 					cout << "Не найдено билетов по заданному критерию" << endl;
 				}
-				cout << "1. Купить билет\n";
+				cout << "1. Продать билет\n";
 				cout << "2. В главное меню \n";
 				cout << "3. Выход \n";
 				cout << "Выберите действие -> ";
@@ -100,7 +99,7 @@ void Menu() {
 					system("cls");
 					TC.Tickets();
 					cout << '\n';
-					TC.buy();
+					TC.sell();
 					break;
 				case 2:
 					system("cls");
@@ -132,6 +131,7 @@ void TicketsControl::Tickets() {
 		return;
 	}
 	string line;
+	Head();
 	for (int i = 0; !file.eof(); i++) {
 		getline(file, line);
 		if (line.empty()) {
@@ -172,10 +172,10 @@ string* TicketsControl::Search(const string& STicket, int& count) {
 	return FTickets;
 }
 
-void TicketsControl::buy() {
+void TicketsControl::sell() {
 	Ticket t;
 	vector<string> strs;
-	cout << "Выберите билет, который хотите купить: \n";
+	cout << "Выберите билет, который хотите продать: \n";
 	int x = 0;
 	cin >> x;
 	ifstream file("Tickets.txt");
@@ -191,7 +191,7 @@ void TicketsControl::buy() {
 	vector<string> ticket;
 	boost::split(ticket, strs[x], boost::is_any_of("|"));
 	if(ticket[0] == "Sold"){
-		cout << "Билет уже куплен!\n";
+		cout << "Билет уже продан!\n";
 	}
 	else if (ticket[0] == "Free") {
 		ticket[0] = "Sold";
@@ -209,15 +209,20 @@ void TicketsControl::buy() {
 			<< t.get_row() << '|' << t.get_seat() << '|' << endl;
 		File.close();
 		ifstream Nfile("Tickets.txt");
-		string bought_ticket;
+		string sold_ticket;
 		getline(Nfile, strs[x]);
-		bought_ticket = strs[x];
+		sold_ticket = strs[x];
 		Nfile.close();
 		ofstream FILE("Tickets.txt");
 		for (int i = 0; i < strs.size(); i++) {
 			FILE << strs[i] << endl;
 		}
-		cout << "Вы купили билет: " << bought_ticket << endl;
+		cout << "Проданный билет: " << sold_ticket << endl;
 		FILE.close();
 	}
+}
+
+void Head() {
+	cout << "Статус|Название|Тип|Дата|Цена (руб)|Продолжительность (мин)|Ряд|Место|" << endl;
+	cout << endl;
 }
