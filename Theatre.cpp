@@ -23,7 +23,7 @@ void Menu() {
 			case 1:
 			{
 				system("cls");
-				TC.Tickets();
+				TC.printTickets();
 				cout << "Что хотите сделать? \n";
 				cout << "1. Продать билеты \n";
 				cout << "2. В главное меню \n";
@@ -36,7 +36,7 @@ void Menu() {
 				case 1:
 				{
 					system("cls");
-					TC.Tickets();
+					TC.printTickets();
 					cout << '\n';
 					TC.sell();
 					cout << "1. В главное меню \n";
@@ -97,7 +97,7 @@ void Menu() {
 				{
 				case 1:
 					system("cls");
-					TC.Tickets();
+					TC.printTickets();
 					cout << '\n';
 					TC.sell();
 					break;
@@ -123,7 +123,7 @@ void Menu() {
 	} 
 }
 
-void TicketsControl::Tickets() {
+void TicketsControl::printTickets() {
 	setlocale(0, "rus");
 	ifstream file("Tickets.txt");
 	if (!file.is_open()) {
@@ -174,7 +174,7 @@ string* TicketsControl::Search(const string& STicket, int& count) {
 
 void TicketsControl::sell() {
 	Ticket t;
-	vector<string> strs;
+	vector<string> strs; //vector<Ticket> ?
 	cout << "Выберите билет, который хотите продать: \n";
 	int x = 0;
 	cin >> x;
@@ -206,7 +206,7 @@ void TicketsControl::sell() {
 		t.set_row(ticket[6]);
 		t.set_seat(ticket[7]);
 		File << t.get_status() << '|' << t.get_name() << '|' << t.get_type() << '|' << t.get_date() << '|' << t.get_cost() << '|' << t.get_duration() << '|'
-			<< t.get_row() << '|' << t.get_seat() << '|' << endl;
+			<< t.get_row() << '|' << t.get_seat() << '|' << endl; // File << t; ?
 		File.close();
 		ifstream Nfile("Tickets.txt");
 		string sold_ticket;

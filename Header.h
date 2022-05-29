@@ -75,7 +75,7 @@ public:
 class TicketsControl {
 public:
 	string* Search(const string&, int&);
-	void Tickets();
+	void printTickets();
 	void sell();
 };
 
