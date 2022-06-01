@@ -1,4 +1,89 @@
-п»ї#include "Header.h"
+Main roles:
+Мария Аронова
+Сергей Шакуров 
+Date:
+14/07/22
+Seats:
+Vip 1000 руб:
+10
+Parter 500 руб:
+20
+Balcony 700 руб:
+15
+
+
+cout << "Что хотите сделать? \n";
+						cout << "1. Купить билеты \n";
+						cout << "2. Забронировать билеты \n";
+						cout << "3. Выход \n";
+						cout << "Выберите действие -> \n";
+
+
+						cout << "Что хотите сделать? \n";
+				cout << "1. Посмотреть подробности \n";
+				cout << "2. Выход \n";
+				cout << "Выберите действие -> \n";
+
+Free МаленькиеКомедии Спектакль 14/07/22 1500 120 25 276 
+Sold МаленькиеКомедии Спектакль 14/07/22 1500 120 25 232 
+Free МаленькиеКомедии Спектакль 14/07/22 1500 120 25 46 
+Sold МаленькиеКомедии Спектакль 14/07/22 1500 120 25 1 
+Free МаленькиеКомедии Спектакль 14/07/22 1500 120 25 23
+Free МаленькиеКомедии Спектакль 14/07/22 1500 120 25 42 
+Free МаленькиеКомедии Спектакль 14/07/22 1500 120 25 3 
+Sold МаленькиеКомедии Спектакль 14/07/22 1500 120 25 5 
+Free МаленькиеКомедии Спектакль 14/07/22 1500 120 25 264 
+Sold МаленькиеКомедии Спектакль 14/07/22 1500 120 25 4 
+
+{
+				system("cls");
+				string STicket;
+				cout << "Введите название/вид/дату(в виде xx/xx/xx)/цену для поиска: \n";
+				getline(cin, STicket);
+				int count = 0;
+				string* FTickets = TC.Search(STicket, count);
+				if (FTickets) {
+					for (int i = 0; i < count; i++) {
+						cout << FTickets[i] << endl;
+					}
+					delete[] FTickets;
+				}
+				else {
+					cout << "Не найдено билетов по заданному критерию" << endl;
+				}
+				/*cout << "1. Купить билет\n";
+				cout << "2. В главное меню \n";
+				cout << "3. Выход \n";
+				cout << "Выберите действие -> ";
+				int z;
+				cin >> z;
+				switch (z)
+				{
+				case 1:
+					system("cls");
+					tickets.Tickets();
+					cout << '\n';
+					tickets.buy();
+					break;
+				case 2:
+					system("cls");
+					Menu();
+					break;
+				case 3:
+					system("cls");
+					exit(0);
+					break;
+				}*/
+			break;
+			}
+
+
+
+
+
+
+
+#include "Header.h"
 #include <Windows.h>
 
 void Menu() {
@@ -12,11 +97,11 @@ void Menu() {
 		do
 		{
 			system("cls");
-			cout << "Р§С‚Рѕ С…РѕС‚РёС‚Рµ СЃРґРµР»Р°С‚СЊ? \n";
-			cout << "1. РџРѕСЃРјРѕС‚СЂРµС‚СЊ Р±РёР»РµС‚С‹ \n";
-			cout << "2. РџРѕРёСЃРє \n";
-			cout << "3. Р’С‹С…РѕРґ \n";
-			cout << "Р’С‹Р±РµСЂРёС‚Рµ РґРµР№СЃС‚РІРёРµ -> ";
+			cout << "Что хотите сделать? \n";
+			cout << "1. Посмотреть билеты \n";
+			cout << "2. Поиск \n";
+			cout << "3. Выход \n";
+			cout << "Выберите действие -> ";
 			cin >> x;
 			switch (x)
 			{
@@ -24,11 +109,11 @@ void Menu() {
 			{
 				system("cls");
 				TC.printTickets();
-				cout << "Р§С‚Рѕ С…РѕС‚РёС‚Рµ СЃРґРµР»Р°С‚СЊ? \n";
-				cout << "1. РџСЂРѕРґР°С‚СЊ Р±РёР»РµС‚С‹ \n";
-				cout << "2. Р’ РіР»Р°РІРЅРѕРµ РјРµРЅСЋ \n";
-				cout << "3. Р’С‹С…РѕРґ \n";
-				cout << "Р’С‹Р±РµСЂРёС‚Рµ РґРµР№СЃС‚РІРёРµ -> ";
+				cout << "Что хотите сделать? \n";
+				cout << "1. Продать билеты \n";
+				cout << "2. В главное меню \n";
+				cout << "3. Выход \n";
+				cout << "Выберите действие -> ";
 				int y;
 				cin >> y;
 				switch (y)
@@ -39,9 +124,9 @@ void Menu() {
 					TC.printTickets();
 					cout << '\n';
 					T.sell();
-					cout << "1. Р’ РіР»Р°РІРЅРѕРµ РјРµРЅСЋ \n";
-					cout << "2. Р’С‹С…РѕРґ \n";
-					cout << "Р’С‹Р±РµСЂРёС‚Рµ РґРµР№СЃС‚РІРёРµ -> ";
+					cout << "1. В главное меню \n";
+					cout << "2. Выход \n";
+					cout << "Выберите действие -> ";
 					int e;
 					cin >> e;
 					switch (e)
@@ -54,7 +139,7 @@ void Menu() {
 						system("cls");
 						exit(0);
 						break;
-					default: cout << "РџРѕРїСЂРѕР±СѓР№С‚Рµ СЃРЅРѕРІР° \n";
+					default: cout << "Попробуйте снова \n";
 					}
 					break;
 				case 2:
@@ -65,7 +150,7 @@ void Menu() {
 					system("cls");
 					exit(0);
 					break;
-				default: cout << "РџРѕРїСЂРѕР±СѓР№С‚Рµ СЃРЅРѕРІР° \n";
+				default: cout << "Попробуйте снова \n";
 				}
 				break;
 				}
@@ -74,7 +159,7 @@ void Menu() {
 			{
 				system("cls");
 				string STicket;
-				cout << "Р’РІРµРґРёС‚Рµ РЅР°Р·РІР°РЅРёРµ/РІРёРґ/РґР°С‚Сѓ(РІ РІРёРґРµ xx/xx/xx)/С†РµРЅСѓ РґР»СЏ РїРѕРёСЃРєР°: \n";
+				cout << "Введите название/вид/дату(в виде xx/xx/xx)/цену для поиска: \n";
 				cin >> STicket;
 				int count = 0;
 				string* FTickets = TC.Search(STicket, count);
@@ -85,12 +170,12 @@ void Menu() {
 					delete[] FTickets;
 				}
 				else {
-					cout << "РќРµ РЅР°Р№РґРµРЅРѕ Р±РёР»РµС‚РѕРІ РїРѕ Р·Р°РґР°РЅРЅРѕРјСѓ РєСЂРёС‚РµСЂРёСЋ" << endl;
+					cout << "Не найдено билетов по заданному критерию" << endl;
 				}
-				cout << "1. РџСЂРѕРґР°С‚СЊ Р±РёР»РµС‚\n";
-				cout << "2. Р’ РіР»Р°РІРЅРѕРµ РјРµРЅСЋ \n";
-				cout << "3. Р’С‹С…РѕРґ \n";
-				cout << "Р’С‹Р±РµСЂРёС‚Рµ РґРµР№СЃС‚РІРёРµ -> ";
+				cout << "1. Продать билет\n";
+				cout << "2. В главное меню \n";
+				cout << "3. Выход \n";
+				cout << "Выберите действие -> ";
 				int z;
 				cin >> z;
 				switch (z)
@@ -127,7 +212,7 @@ void TicketsControl::printTickets() {
 	setlocale(0, "rus");
 	ifstream file("Tickets.txt");
 	if (!file.is_open()) {
-		cout << "РЎРїРµРєС‚Р°РєР»РµР№ РЅРµС‚!" << '\n';
+		cout << "Спектаклей нет!" << '\n';
 		return;
 	}
 	string line;
@@ -143,6 +228,7 @@ void TicketsControl::printTickets() {
 }
 
 string* TicketsControl::Search(const string& STicket, int& count) {
+	Ticket t;
 	SetConsoleCP(1251);
 	SetConsoleOutputCP(1251);
 	ifstream file("Tickets.txt");
@@ -150,10 +236,22 @@ string* TicketsControl::Search(const string& STicket, int& count) {
 		cout << "[-] File is not opened!";
 		exit(EXIT_FAILURE);
 	}
+	vector<string> test;
+	vector<string*> test2;
+	vector<string>::iterator f;
 	string ticket;
 	string* FTickets = nullptr;
 	string* tmp = nullptr;
 	int k = 0;
+		while (!file.eof()) {
+			test.push_back(ticket);
+			f = find(test.begin(), test.end(), STicket);
+			if (f != test.end()) {
+				cout << f - test.begin();
+				return f - test.begin();
+				test2.push_back(f - test.begin());
+		}
+	}
 	while (!file.eof()) {
 		getline(file, ticket);
 		if (ticket.find(STicket) != -1) {
@@ -174,8 +272,8 @@ string* TicketsControl::Search(const string& STicket, int& count) {
 
 void Ticket::sell() {
 	Ticket t;
-	vector<string> tickets;
-	cout << "Р’С‹Р±РµСЂРёС‚Рµ Р±РёР»РµС‚, РєРѕС‚РѕСЂС‹Р№ С…РѕС‚РёС‚Рµ РїСЂРѕРґР°С‚СЊ: \n";
+	vector<string> tickets; //vector<Ticket> ?
+	cout << "Выберите билет, который хотите продать: \n";
 	int x = 0;
 	cin >> x;
 	ifstream file("Tickets.txt");
@@ -191,7 +289,7 @@ void Ticket::sell() {
 	vector<string> ticket;
 	boost::split(ticket, tickets[x], boost::is_any_of("|"));
 	if(ticket[0] == "Sold"){
-		cout << "Р‘РёР»РµС‚ СѓР¶Рµ РїСЂРѕРґР°РЅ!\n";
+		cout << "Билет уже продан!\n";
 	}
 	else if (ticket[0] == "Free") {
 		ticket[0] = "Sold";
@@ -217,12 +315,12 @@ void Ticket::sell() {
 		for (int i = 0; i < tickets.size(); i++) {
 			FILE << tickets[i] << endl;
 		}
-		cout << "РџСЂРѕРґР°РЅРЅС‹Р№ Р±РёР»РµС‚: " << sold_ticket << endl;
+		cout << "Проданный билет: " << sold_ticket << endl;
 		FILE.close();
 	}
 }
 
 void Head() {
-	cout << "РЎС‚Р°С‚СѓСЃ|РќР°Р·РІР°РЅРёРµ|РўРёРї|Р”Р°С‚Р°|Р¦РµРЅР° (СЂСѓР±)|РџСЂРѕРґРѕР»Р¶РёС‚РµР»СЊРЅРѕСЃС‚СЊ (РјРёРЅ)|Р СЏРґ|РњРµСЃС‚Рѕ|" << endl;
+	cout << "Статус|Название|Тип|Дата|Цена (руб)|Продолжительность (мин)|Ряд|Место|" << endl;
 	cout << endl;
 }
