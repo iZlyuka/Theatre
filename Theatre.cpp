@@ -24,6 +24,7 @@ void Menu() {
 			{
 				system("cls");
 				TC.printTickets();
+				cout << '\n';
 				cout << "Что хотите сделать? \n";
 				cout << "1. Продать билеты \n";
 				cout << "2. В главное меню \n";
