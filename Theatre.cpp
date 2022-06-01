@@ -4,7 +4,7 @@
 void Menu() {
 	SetConsoleCP(1251);
 	SetConsoleOutputCP(1251);
-	Ticket tickets;
+	Ticket T;
 	TicketsControl TC;
 	for (;;)
 	{
@@ -38,7 +38,7 @@ void Menu() {
 					system("cls");
 					TC.printTickets();
 					cout << '\n';
-					TC.sell();
+					T.sell();
 					cout << "1. В главное меню \n";
 					cout << "2. Выход \n";
 					cout << "Выберите действие -> ";
@@ -99,7 +99,7 @@ void Menu() {
 					system("cls");
 					TC.printTickets();
 					cout << '\n';
-					TC.sell();
+					T.sell();
 					break;
 				case 2:
 					system("cls");
@@ -172,9 +172,9 @@ string* TicketsControl::Search(const string& STicket, int& count) {
 	return FTickets;
 }
 
-void TicketsControl::sell() {
+void Ticket::sell() {
 	Ticket t;
-	vector<string> strs; //vector<Ticket> ?
+	vector<string> strs; 
 	cout << "Выберите билет, который хотите продать: \n";
 	int x = 0;
 	cin >> x;
@@ -206,7 +206,7 @@ void TicketsControl::sell() {
 		t.set_row(ticket[6]);
 		t.set_seat(ticket[7]);
 		File << t.get_status() << '|' << t.get_name() << '|' << t.get_type() << '|' << t.get_date() << '|' << t.get_cost() << '|' << t.get_duration() << '|'
-			<< t.get_row() << '|' << t.get_seat() << '|' << endl; // File << t; ?
+			<< t.get_row() << '|' << t.get_seat() << '|' << endl; 
 		File.close();
 		ifstream Nfile("Tickets.txt");
 		string sold_ticket;
