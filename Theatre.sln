@@ -7,10 +7,7 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Theatre", "Theatre.vcxproj"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{6D390CB7-31CC-4D27-BF3F-4646CBB55CE8}"
 	ProjectSection(SolutionItems) = preProject
-		Basket.txt = Basket.txt
-		LittleC.txt = LittleC.txt
-		Reserve.txt = Reserve.txt
-		Temp.txt = Temp.txt
+		Notes.txt = Notes.txt
 		Tickets.txt = Tickets.txt
 	EndProjectSection
 EndProject
