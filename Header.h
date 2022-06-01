@@ -70,13 +70,13 @@ public:
 	string get_seat() {
 		return seat;
 	}
+	void sell();
 };
 
 class TicketsControl {
 public:
 	string* Search(const string&, int&);
 	void printTickets();
-	void sell();
 };
 
 void Head();
