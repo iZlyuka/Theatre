@@ -75,7 +75,7 @@ void Menu() {
 			{
 				system("cls");
 				string STicket;
-				cout << "Введите название/вид/дату(в виде xx/xx/xx)/цену для поиска: \n";
+				cout << "Введите название/тип представления/дату(в виде xx/xx/xx)/цену для поиска: \n";
 				cin >> STicket;
 				int count = 0;
 				string* FTickets = TC.Search(STicket, count);
@@ -123,6 +123,10 @@ void Menu() {
 		}while (x < 1 || x > 3);
 	} 
 }
+void Head() {
+	cout << "Статус|Название|Тип|Дата|Цена (руб)|Продолжительность (мин)|Ряд|Место|" << endl;
+	cout << endl;
+}
 
 void TicketsControl::printTickets() {
 	setlocale(0, "rus");
@@ -142,6 +146,7 @@ void TicketsControl::printTickets() {
 	}
 	file.close();
 }
+
 
 string* TicketsControl::Search(const string& STicket, int& count) {
 	SetConsoleCP(1251);
@@ -223,7 +228,3 @@ void Ticket::sell() {
 	}
 }
 
-void Head() {
-	cout << "Статус|Название|Тип|Дата|Цена (руб)|Продолжительность (мин)|Ряд|Место|" << endl;
-	cout << endl;
-}
